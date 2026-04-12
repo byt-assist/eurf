@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EURF — Security & Audit</title>
+    <title>EURF — Security & 100-Year Lock</title>
+    <meta name="description" content="EURF security: Ownership revoked, no mint, no freeze. 100-year lock of 100T EURF through Ton Raffles vesting contract.">
+    <link rel="canonical" href="https://byt-assist.github.io/eurf/security.html">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRXP2EW5J6"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -12,36 +14,230 @@
         gtag('config', 'G-QRXP2EW5J6');
     </script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a2a 0%, #000000 100%);
-            color: #fff;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(0,51,153,0.3);
-        }
-        h1, h2 { color: #003399; margin-bottom: 20px; }
-        p, li { color: #ccc; margin-bottom: 10px; }
-        ul { margin-left: 20px; }
-        .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .footer a { color: #003399; text-decoration: none; margin: 0 10px; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#0a0a2a 0%,#000 100%);color:#fff;line-height:1.6;padding:20px}
+        .container{max-width:1000px;margin:0 auto}
+        h1,h2{color:#003399;margin-bottom:20px}
+        p,li{color:#ccc;margin-bottom:10px}
+        ul{margin-left:20px;margin-bottom:20px}
+        .card{background:rgba(255,255,255,0.05);border-radius:20px;padding:25px;margin-bottom:20px;border:1px solid rgba(0,51,153,0.3)}
+        .address{background:rgba(0,0,0,0.5);padding:15px;border-radius:10px;font-family:monospace;word-break:break-all;margin:20px 0;color:#FFD700}
+        .btn{display:inline-block;background:#003399;color:#fff;padding:10px 20px;border-radius:40px;text-decoration:none;font-weight:bold;margin-top:10px;margin-right:10px;transition:all .3s}
+        .btn:hover{background:#FFD700;color:#000}
+        .footer{text-align:center;margin-top:60px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)}
+        .footer a{color:#003399;text-decoration:none;margin:0 10px}
+        .lock-block{background:linear-gradient(135deg,#0a0a2a 0%,#000 100%);border-radius:20px;padding:24px;border:1px solid #003399;margin:30px 0;box-shadow:0 8px 32px rgba(0,51,153,0.2)}
+        .lang-switch{position:absolute;top:20px;right:20px;z-index:100}
+        .lang-dropdown{background:rgba(0,0,0,0.8);border:1px solid #003399;border-radius:8px;padding:8px 12px;color:#003399;cursor:pointer;font-size:14px}
+        .lang-dropdown option{background:#000;color:#003399}
+        @media(max-width:768px){.lang-switch{position:static;text-align:right;margin-bottom:20px}}
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>🔒 Security & Audit</h1>
-    <h2>Smart Contract</h2>
-    <p>EURF is a standard Jetton on TON. Ownership has been <strong>revoked</strong> — no one can mint new tokens, freeze wallets, or change metadata.</p>
-    <h2>Ownership Revoked</h2>
-    <p>✅ Admin address: <strong>Empty (revoked)</strong><br>✅ No mint function<br>✅ No freeze function<br>✅ Fixed supply: 10,000,000,000,000,000,000,000 EURF</p>
-    <div class="footer"><a href="https://byt-assist.github.io/eurf/">← Home</a> <a href="faq.html">FAQ</a> <a href="whitepaper.html">Whitepaper</a> <a href="kyc.html">KYC</a></div>
+    <div class="lang-switch">
+        <select id="languageSelect" class="lang-dropdown">
+            <option value="en">🇬🇧 English</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="fa">🇮🇷 فارسی</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="uz">🇺🇿 O'zbek</option>
+            <option value="kz">🇰🇿 Қазақша</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="th">🇹🇭 ไทย</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
+    </div>
+
+    <h1 id="title">🔒 Security & 100-Year Lock</h1>
+
+    <div class="card">
+        <h2 id="subtitle1">📋 Smart Contract Security</h2>
+        <p id="secDesc1">EURF is a standard Jetton on TON. Ownership has been <strong>revoked</strong> — no one can mint new tokens, freeze wallets, or change metadata.</p>
+        <ul>
+            <li id="secItem1">✅ Admin address: <strong>Empty (revoked)</strong></li>
+            <li id="secItem2">✅ No mint function</li>
+            <li id="secItem3">✅ No freeze function</li>
+            <li id="secItem4">✅ Fixed supply: 10,000,000,000,000,000,000,000 EURF</li>
+            <li id="secItem5">✅ Price: 1 EURF = 1 € (1:1 to euro)</li>
+        </ul>
+        <div class="address" id="contractAddr">📄 Contract: EQAuv8yR6T-Bj3PxCi46AtMKSXgbtXfO5Vt2ZruHgoV8D609</div>
+    </div>
+
+    <!-- Golden Century Vault — 100-Year Lock Block -->
+    <div class="lock-block">
+        <div style="text-align: center; margin-bottom: 20px;">
+            <div style="font-size: 48px; margin-bottom: 8px;">🔒</div>
+            <div style="font-size: 16px; color: #FFD700; letter-spacing: 2px; text-transform: uppercase;" id="vaultTitle1">Golden Century Vault</div>
+            <div style="font-size: 20px; font-weight: bold; color: #fff; margin-top: 8px;" id="vaultTitle2">€100T GOLD EUR FUND</div>
+            <div style="font-size: 14px; color: #003399; margin-top: 4px;" id="vaultLock">100-Year Lock (until 2126)</div>
+        </div>
+        <div style="background: rgba(0,51,153,0.1); border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(0,51,153,0.3);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="color: #aaa;" id="vaultLockedLabel">🔒 Заблокировано:</span>
+                <span style="color: #FFD700; font-weight: bold;">100,000,000,000,000 EURF</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <span style="color: #aaa;" id="vaultTermLabel">⏱️ Срок:</span>
+                <span style="color: #FFD700; font-weight: bold;" id="vaultTermValue">100 лет (до 2126)</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: #aaa;" id="vaultStatusLabel">📋 Статус:</span>
+                <span style="color: #4caf50; font-weight: bold;" id="vaultStatusValue">✅ Активен / Verified</span>
+            </div>
+        </div>
+        <div style="background: rgba(0,0,0,0.5); border-radius: 10px; padding: 12px; margin-bottom: 16px; font-family: monospace; font-size: 12px; word-break: break-all; text-align: center; border: 1px solid rgba(0,51,153,0.3);">
+            <span style="color: #aaa;" id="vaultContractLabel">📄 Контракт блокировки:</span><br>
+            <span style="color: #FFD700;">EQAnf26ZtJXFhzwGiHXtqi4ON7cYYSma8M9DBNjGaN7O5x73</span>
+        </div>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://tonviewer.com/EQAnf26ZtJXFhzwGiHXtqi4ON7cYYSma8M9DBNjGaN7O5x73" target="_blank" style="background: #003399; color: #fff; padding: 8px 16px; border-radius: 40px; text-decoration: none; font-size: 13px; font-weight: bold; transition: all 0.3s;" onmouseover="this.style.background='#FFD700'; this.style.color='#000'" onmouseout="this.style.background='#003399'; this.style.color='#fff'" id="vaultBtnTonviewer">🔍 TonViewer</a>
+            <a href="https://tonscan.org/address/EQAnf26ZtJXFhzwGiHXtqi4ON7cYYSma8M9DBNjGaN7O5x73" target="_blank" style="background: #003399; color: #fff; padding: 8px 16px; border-radius: 40px; text-decoration: none; font-size: 13px; font-weight: bold; transition: all 0.3s;" onmouseover="this.style.background='#FFD700'; this.style.color='#000'" onmouseout="this.style.background='#003399'; this.style.color='#fff'" id="vaultBtnTonscan">📊 Tonscan</a>
+        </div>
+        <div style="margin-top: 16px; font-size: 11px; color: #666; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px;" id="vaultNote">
+            🔒 Заблокировано через Ton Raffles с использованием официального вестинг-контракта TON.<br>
+            ✅ Никто, включая команду, не может получить доступ до 2126 года.
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 id="subtitle2">🔐 How to Verify the Lock</h2>
+        <p id="verifyDesc">Anyone can verify the 100-year lock independently:</p>
+        <ol style="margin-left: 20px; color: #ccc;">
+            <li id="verifyStep1">Open <a href="https://tonviewer.com/EQAnf26ZtJXFhzwGiHXtqi4ON7cYYSma8M9DBNjGaN7O5x73" target="_blank" style="color:#FFD700;">TonViewer</a> for the lock contract</li>
+            <li id="verifyStep2">Check the balance — it contains 100,000,000,000,000 EURF</li>
+            <li id="verifyStep3">Verify the contract was created on April 12, 2026</li>
+            <li id="verifyStep4">Confirm no outgoing transactions (tokens never moved)</li>
+            <li id="verifyStep5">The lock was executed via Ton Raffles using official TON vesting contract</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        <a href="index.html" id="homeLink">← Home</a>
+        <a href="tokenomics.html" id="tokenomicsLink">Tokenomics</a>
+        <a href="faq.html" id="faqLink">FAQ</a>
+        <a href="kyc.html" id="kycLink">KYC</a>
+    </div>
 </div>
+
+<script>
+    const translations = {
+        en: {
+            title:"🔒 Security & 100-Year Lock",
+            subtitle1:"📋 Smart Contract Security",
+            secDesc1:"EURF is a standard Jetton on TON. Ownership has been <strong>revoked</strong> — no one can mint new tokens, freeze wallets, or change metadata.",
+            secItem1:"✅ Admin address: <strong>Empty (revoked)</strong>",
+            secItem2:"✅ No mint function",
+            secItem3:"✅ No freeze function",
+            secItem4:"✅ Fixed supply: 10,000,000,000,000,000,000,000 EURF",
+            secItem5:"✅ Price: 1 EURF = 1 € (1:1 to euro)",
+            contractAddr:"📄 Contract: EQAuv8yR6T-Bj3PxCi46AtMKSXgbtXfO5Vt2ZruHgoV8D609",
+            subtitle2:"🔐 How to Verify the Lock",
+            verifyDesc:"Anyone can verify the 100-year lock independently:",
+            verifyStep1:"Open TonViewer for the lock contract",
+            verifyStep2:"Check the balance — it contains 100,000,000,000,000 EURF",
+            verifyStep3:"Verify the contract was created on April 12, 2026",
+            verifyStep4:"Confirm no outgoing transactions (tokens never moved)",
+            verifyStep5:"The lock was executed via Ton Raffles using official TON vesting contract",
+            homeLink:"← Home", tokenomicsLink:"Tokenomics", faqLink:"FAQ", kycLink:"KYC",
+            vaultTitle1:"Golden Century Vault", vaultTitle2:"€100T GOLD EUR FUND", vaultLock:"100-Year Lock (until 2126)",
+            vaultLockedLabel:"🔒 Locked:", vaultTermLabel:"⏱️ Term:", vaultStatusLabel:"📋 Status:", vaultStatusValue:"✅ Active / Verified",
+            vaultContractLabel:"📄 Lock Contract:", vaultBtnTonviewer:"🔍 TonViewer", vaultBtnTonscan:"📊 Tonscan",
+            vaultNote:"🔒 Locked via Ton Raffles using official TON vesting contract.<br>✅ No one, including the team, can access until 2126.",
+            vaultTermValue:"100 years (until 2126)"
+        },
+        ru: {
+            title:"🔒 Безопасность и 100-летняя блокировка",
+            subtitle1:"📋 Безопасность смарт-контракта",
+            secDesc1:"EURF — стандартный Jetton на TON. Права администратора <strong>отозваны</strong> — никто не может выпускать новые токены, замораживать кошельки или изменять метаданные.",
+            secItem1:"✅ Адрес администратора: <strong>Пусто (отозван)</strong>",
+            secItem2:"✅ Нет функции mint",
+            secItem3:"✅ Нет функции freeze",
+            secItem4:"✅ Фиксированная эмиссия: 10 000 000 000 000 000 000 000 EURF",
+            secItem5:"✅ Цена: 1 EURF = 1 € (1:1 к евро)",
+            contractAddr:"📄 Контракт: EQAuv8yR6T-Bj3PxCi46AtMKSXgbtXfO5Vt2ZruHgoV8D609",
+            subtitle2:"🔐 Как проверить блокировку",
+            verifyDesc:"Любой может самостоятельно проверить 100-летнюю блокировку:",
+            verifyStep1:"Откройте TonViewer для контракта блокировки",
+            verifyStep2:"Проверьте баланс — он содержит 100 000 000 000 000 EURF",
+            verifyStep3:"Убедитесь, что контракт создан 12 апреля 2026 года",
+            verifyStep4:"Подтвердите отсутствие исходящих транзакций (токены не двигались)",
+            verifyStep5:"Блокировка выполнена через Ton Raffles с использованием официального вестинг-контракта TON",
+            homeLink:"← Главная", tokenomicsLink:"Токеномика", faqLink:"FAQ", kycLink:"KYC",
+            vaultTitle1:"Golden Century Vault", vaultTitle2:"€100T GOLD EUR FUND", vaultLock:"100-летняя блокировка (до 2126)",
+            vaultLockedLabel:"🔒 Заблокировано:", vaultTermLabel:"⏱️ Срок:", vaultStatusLabel:"📋 Статус:", vaultStatusValue:"✅ Активен / Verified",
+            vaultContractLabel:"📄 Контракт блокировки:", vaultBtnTonviewer:"🔍 TonViewer", vaultBtnTonscan:"📊 Tonscan",
+            vaultNote:"🔒 Заблокировано через Ton Raffles с использованием официального вестинг-контракта TON.<br>✅ Никто, включая команду, не может получить доступ до 2126 года.",
+            vaultTermValue:"100 лет (до 2126)"
+        }
+    };
+
+    // Копируем русские переводы для остальных языков
+    const languages = ['it','ar','fa','zh','uz','kz','es','de','fr','ja','th','hi'];
+    for(let lang of languages){
+        translations[lang] = JSON.parse(JSON.stringify(translations.ru));
+        if(lang==='it') translations.it.title = "🔒 Sicurezza e blocco di 100 anni";
+        if(lang==='ar') translations.ar.title = "🔒 الأمان والقفل لمدة 100 عام";
+        if(lang==='fa') translations.fa.title = "🔒 امنیت و قفل 100 ساله";
+        if(lang==='zh') translations.zh.title = "🔒 安全性与100年锁定";
+        if(lang==='uz') translations.uz.title = "🔒 Xavfsizlik va 100 yillik blokirovka";
+        if(lang==='kz') translations.kz.title = "🔒 Қауіпсіздік және 100 жылдық бұғаттау";
+        if(lang==='es') translations.es.title = "🔒 Seguridad y bloqueo de 100 años";
+        if(lang==='de') translations.de.title = "🔒 Sicherheit und 100-Jahres-Sperre";
+        if(lang==='fr') translations.fr.title = "🔒 Sécurité et verrouillage de 100 ans";
+        if(lang==='ja') translations.ja.title = "🔒 セキュリティと100年ロック";
+        if(lang==='th') translations.th.title = "🔒 ความปลอดภัยและการล็อค 100 ปี";
+        if(lang==='hi') translations.hi.title = "🔒 सुरक्षा और 100 साल का लॉक";
+    }
+
+    const defaultLang = "en";
+    function setLanguage(lang) {
+        const t = translations[lang] || translations[defaultLang];
+        document.getElementById('title').innerText = t.title;
+        document.getElementById('subtitle1').innerText = t.subtitle1;
+        document.getElementById('secDesc1').innerHTML = t.secDesc1;
+        document.getElementById('secItem1').innerHTML = t.secItem1;
+        document.getElementById('secItem2').innerHTML = t.secItem2;
+        document.getElementById('secItem3').innerHTML = t.secItem3;
+        document.getElementById('secItem4').innerHTML = t.secItem4;
+        document.getElementById('secItem5').innerHTML = t.secItem5;
+        document.getElementById('contractAddr').innerHTML = t.contractAddr;
+        document.getElementById('subtitle2').innerText = t.subtitle2;
+        document.getElementById('verifyDesc').innerText = t.verifyDesc;
+        document.getElementById('verifyStep1').innerHTML = t.verifyStep1;
+        document.getElementById('verifyStep2').innerHTML = t.verifyStep2;
+        document.getElementById('verifyStep3').innerHTML = t.verifyStep3;
+        document.getElementById('verifyStep4').innerHTML = t.verifyStep4;
+        document.getElementById('verifyStep5').innerHTML = t.verifyStep5;
+        document.getElementById('homeLink').innerText = t.homeLink;
+        document.getElementById('tokenomicsLink').innerText = t.tokenomicsLink;
+        document.getElementById('faqLink').innerText = t.faqLink;
+        document.getElementById('kycLink').innerText = t.kycLink;
+        // Vault translations
+        document.getElementById('vaultTitle1').innerText = t.vaultTitle1;
+        document.getElementById('vaultTitle2').innerText = t.vaultTitle2;
+        document.getElementById('vaultLock').innerText = t.vaultLock;
+        document.getElementById('vaultLockedLabel').innerHTML = t.vaultLockedLabel;
+        document.getElementById('vaultTermLabel').innerHTML = t.vaultTermLabel;
+        document.getElementById('vaultTermValue').innerHTML = t.vaultTermValue;
+        document.getElementById('vaultStatusLabel').innerHTML = t.vaultStatusLabel;
+        document.getElementById('vaultStatusValue').innerHTML = t.vaultStatusValue;
+        document.getElementById('vaultContractLabel').innerHTML = t.vaultContractLabel;
+        document.getElementById('vaultBtnTonviewer').innerHTML = t.vaultBtnTonviewer;
+        document.getElementById('vaultBtnTonscan').innerHTML = t.vaultBtnTonscan;
+        document.getElementById('vaultNote').innerHTML = t.vaultNote;
+        localStorage.setItem('eurf_security_lang', lang);
+        document.getElementById('languageSelect').value = lang;
+    }
+    document.getElementById('languageSelect').addEventListener('change', (e) => { setLanguage(e.target.value); });
+    const savedLang = localStorage.getItem('eurf_security_lang');
+    if(savedLang && translations[savedLang]) setLanguage(savedLang);
+    else setLanguage('en');
+</script>
 </body>
 </html>
